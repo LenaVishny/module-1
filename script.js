@@ -1,4 +1,5 @@
 'use strict';
+{
 const productName = 'fridge';
 const productAmount = 25;
 const productCategory = 'hardware';
@@ -8,7 +9,7 @@ const productPrice = 50000;
 
 const totalAmount = productAmount * productPrice;
 console.log(totalAmount);
-
+}
 {
     const productNameTwo = 'microwave';
     const productAmountTwo = 10;
