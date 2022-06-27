@@ -1,19 +1,22 @@
-
+'use strict';
 
     let productName = prompt('Наименование товара');
 
-    let productAmount = prompt('Количество товара');
-    productAmount = Number(productAmount);
-
+    let productAmount = prompt('Количество товара'); 
+    
     let productCategory = prompt('Категория товара');
 
     let productPrice = prompt('Цена товара');
-    productPrice = Number(productPrice);
 
-    console.log(typeof productAmount);
-    console.log(typeof productPrice);
+    if(productAmount  === "" || productPrice === ""){
+        console.log("Вы ввели некорректные данные")
+    };
+    
 
-    console.log(`На складе ${productAmount} шт. товара "${productName}" на сумму ${productAmount * productPrice} рублей`);
+    //console.log(typeof productAmount);
+    //console.log(typeof productPrice);
+
+    //console.log(`На складе ${productAmount} шт. товара "${productName}" на сумму ${productAmount * productPrice} рублей`);
 
 
     
