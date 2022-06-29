@@ -1,6 +1,5 @@
 'use strict';
-//Вторая задача:
-
+//Вторая задача
 const rain =Math.round(Math.random());
 
 if(rain === 1){
@@ -8,6 +7,7 @@ if(rain === 1){
 } else (
     console.log("Дождя нет!")
 );
+
 //Третья задача:
 const pointsMaths = + prompt('Введите кол-во баллов по математике:');
 const pointsRussian = + prompt('Введите кол-во баллов по русскому языку:');
@@ -23,8 +23,10 @@ if(sumPoints >= 265){
 //Четвёртая задача:
 const amountMoney = + prompt('Сколько денег Вы хотите получить?');
 
-if (amountMoney % 100 === 0){
+if (amountMoney % 100 === 0 && amountMoney > 0){
     console.log("Возьмите свои деньги!")
+} else if (amountMoney === 0){
+    console.log("Вы ввели 0 рублей")
 } else {
     console.log("Введите сумму кратную 100")
 };
