@@ -1,12 +1,13 @@
 'use strict';
 
+const addPrefix = ([...arr], prefix) => {
+    let arrTwo = [];
+    for (let elem of arr){
+        arrTwo.push(`${prefix} ${elem}`);
+    }
+    return arrTwo;
+}
+
 const names = ['Noah', 'Liam', 'Mason', 'Jacob', 'Robot', 'William', 'Ethan', 'Michael', 'Alexander'];
 
-const pre = 'Mr ';
-const addPrefix = (pre + names.join('; ' + pre));
-console.log(addPrefix);
-
-names.forEach((i) => {
-    console.log(`${'Wr'} ${i}`);
-});
-
+console.log(addPrefix(names, "Mr"));
