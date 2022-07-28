@@ -12,16 +12,19 @@ const getRandomArray = (a) => {
         randomArray.push(getRandomNumber(50, -50));
     }
     return randomArray;
+    
 };
+getRandomArray(100)
+console.log(getRandomArray(100))
 
-console.log(getRandomArray(100));
+const arrayNumbers = getRandomArray(100);
 
+const even = arrayNumbers.filter(function (i) {
+    return i % 2 === 0;
+    });
+console.log(even);
 
-
-
-
-
-
-
-
-
+const odd = arrayNumbers.filter(function (i) {
+    return i % 2 !== 0;
+    }); 
+console.log(odd);
