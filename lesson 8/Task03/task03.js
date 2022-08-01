@@ -1,30 +1,38 @@
 'use strict';
-
-const getRandomNumber = (n, m) => {
-    const randomNumber = Math.floor((Math.random() * (m - n + 1)) + n);
+const getRandomNumber = (a, b) => {
+    let min;
+    let max;
+    if (a < b){
+        min = a;
+        max = b;
+    } else {
+        min = b;
+        max = a;
+    }
+    const randomNumber = Math.round(min + Math.random() * (max - min));
     return randomNumber;
 };
 
 
-const getRandomArray = (a) => {
+const getRandomArray = (a, n, m, c) => { 
     const randomArray = [];
     for (let i = 0; i < a; i++) {
-        randomArray.push(getRandomNumber(50, -50));
-    }
+        randomArray.push(getRandomNumber(n, m, c));
+        }
+        
+    let even = randomArray.filter(function (i) {
+            return i % 2 == 0;
+        });
+    console.log(even);
+
+    let odd = randomArray.filter(function (i) {
+        return i % 2 !== 0;
+    });
+    console.log(odd);
+    
     return randomArray;
     
+
 };
-getRandomArray(100)
-console.log(getRandomArray(100))
 
-const arrayNumbers = getRandomArray(100);
-
-const even = arrayNumbers.filter(function (i) {
-    return i % 2 === 0;
-    });
-console.log(even);
-
-const odd = arrayNumbers.filter(function (i) {
-    return i % 2 !== 0;
-    }); 
-console.log(odd);
+console.log(getRandomArray(100, 50, -50, 'even'));

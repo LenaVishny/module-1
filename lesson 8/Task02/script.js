@@ -1,20 +1,29 @@
 'use strict';
 
-const getRandomNumber = (n, m) => {
-    const randomNumber = Math.floor((Math.random() * (m - n + 1)) + n);
+const getRandomNumber = (a, b) => {
+    let min;
+    let max;
+    if (a < b){
+        min = a;
+        max = b;
+    } else {
+        min = b;
+        max = a;
+    }
+    const randomNumber = Math.round(min + Math.random() * (max - min));
     return randomNumber;
 };
 
 
-const getRandomArray = (a) => {
+const getRandomArray = (a, n, m) => {
     const randomArray = [];
     for (let i = 0; i < a; i++) {
-        randomArray.push(getRandomNumber(50, -50));
+        randomArray.push(getRandomNumber(n, m));
     }
     return randomArray;
 };
 
-console.log(getRandomArray(100));
+console.log(getRandomArray(100, 50, -50));
 
 
 
