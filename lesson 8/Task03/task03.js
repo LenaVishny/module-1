@@ -13,30 +13,33 @@ const getRandomNumber = (a, b) => {
     return randomNumber;
 };
 
-
-
 const getRandomArray = (a, n, m, c) => { 
     let randomArray = [];
-    for (let i = 0; i < a; i++) {
-        randomArray.push(getRandomNumber(n, m));
+    while (randomArray.length < a) {
+        let randomNumber = getRandomNumber(n, m);
+
+        switch (c) {
+            case 'even':
+                if (randomNumber % 2 == 0){
+                    randomArray.push(randomNumber)
+                } else {
+                    continue
+                }
+                break;
+
+            case 'odd':
+                if (randomNumber % 2 == 1){
+                    randomArray.push(randomNumber)
+                } else {
+                    continue
+                }
+                break;   
+                default:
+                    randomArray.push(randomNumber);    
         }
-    //let d = 'even';
-    switch (c) {
-        case 'even':
-            randomArray.filter(function (i) {
-                return i % 2 == 0;
-            });
-            break;
-        case 'odd':
-            randomArray.filter(function (i) {
-                return i % 2 !== 0;
-            });
-            break;      
     }
     return randomArray;
 }
-
-
-console.log(getRandomArray(100, 50, -50, 'even'));
+console.log(getRandomArray(10, 50, -50, 'even'));
 
 
