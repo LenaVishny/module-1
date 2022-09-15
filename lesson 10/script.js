@@ -24449,7 +24449,7 @@ const listIPv4 = [
     ];
 
     const getIp = () => {
-        const ip = new Set(listIPv4);
-        return ip.size;
+        const ipNew = new Set(listIPv4);
+        return ipNew.size;
     }
     console.log(getIp());
