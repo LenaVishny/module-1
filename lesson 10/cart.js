@@ -21,17 +21,14 @@ const cart = {
     increaseCount(number) {
         this.count += number;
     },
-    //не понимаю как изменить тут? чтобы сумму он возвращал, а не записывал в свойство totalPrice?
+    
     calculateItemPrice() {
-        this.totalPrice = this.items.reduce((sum, {productPrice, productAmount}) => {
-            return sum += productPrice * productAmount;
-        }, 0)
+        return this.items.reduce((sum, {productPrice, productAmount}) => sum += productPrice * productAmount, 0)
     },
 
     clear(){
         this.items = [];
         this.count = 0;
-        this.totalPrice = 0;
     },
     print(){
         console.log(JSON.stringify(this.items));
@@ -42,5 +39,5 @@ const cart = {
 cart.add('boots', 5000, 1);
 cart.add('skirt', 3000, 2);
 cart.add('sweater', 4000, 3);
-//cart.totalPrice = 10;
+cart.totalPrice = 10;
 cart.print();
