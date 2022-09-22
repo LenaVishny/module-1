@@ -1,32 +1,27 @@
 'use strict';
 
-/* const rectangle = {
-    width,
-    height,
+const rectangle = {
+  _width: 5,
+  _height: 5,
 
-    get calcPerim() {
-        return (this.width + this.height) * 2;
-    },
-
-    get calcArea() {
-        return this.length * this.width;
-    },
-};*/
-
-
-// не понимаю как это сделать через гетер?
-const createRect = (width, height) => ({
-  width,
-  height,
-  calcArea() {
-    return this.width * this.height;
+  set width(width) {
+    this._width = width;
   },
-  calcPerim() {
-    return (this.width + this.height) * 2;
+
+  set height(height) {
+    this._height = height;
   },
-});
-const rect = createRect(10, 15);
-console.log(rect.calcArea());
-console.log(rect.calcPerim());
 
+  get calcPerim() {
+    return `${(this._width + this._height) * 2} см`;
+  },
 
+  get calcArea() {
+    return `${this._width * this._height} см`;
+  },
+};
+rectangle._height = 10;
+rectangle._width = 20;
+
+console.log(rectangle.calcPerim);
+console.log(rectangle.calcArea);
