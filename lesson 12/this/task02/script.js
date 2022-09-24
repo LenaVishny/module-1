@@ -9,6 +9,14 @@ const cart = {
     return this.calculateItemPrice();
   },
 
+  set setDiscount(promocode) {
+    if (promocode === 'METHED') {
+      this._discount = 15;
+    } else if (promocode === 'NEWYEAR') {
+      this._discount = 21;
+    }
+  },
+
   add(productName, productPrice, productAmount = 1) {
     this.items.push({
       productName,
@@ -18,28 +26,13 @@ const cart = {
     this.increaseCount(productAmount);
   },
 
-  set setDiscount(promocode) {
-    this._discount = promocode;
-  },
-
-
-  get getpPromocode() {
-    let promocode;
-    if (promocode === 'METHED') {
-      return `${this._discount * 15 / 100}`;
-    } else if (promocode === 'NEWYEAR') {
-      return `${this._discount * 21 / 100}`;
-    }
-    return this.totalPrice;
-  },
-
   increaseCount(number) {
     this.count += number;
   },
 
   calculateItemPrice() {
     return this.items.reduce((sum, {productPrice, productAmount}) =>
-      sum += (productPrice * productAmount) - this._discount, 0);
+      sum += (productPrice * productAmount) - this._discount / 100, 0);
   },
 
   clear() {
@@ -52,8 +45,9 @@ const cart = {
   },
 };
 
-cart.add('boots', 5000, 1, 'METHED');
+cart.add('boots', 5000, 1);
 cart.add('skirt', 3000, 2);
 cart.add('sweater', 4000, 3);
+cart.setDiscount = 'METHED';
 
 cart.print();
