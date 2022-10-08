@@ -1,45 +1,95 @@
 'use strict';
+
 (() => {
     
     const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
 
-    
-    
     const getRandomInclusive = (min, max) => {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1) + min);
     };
-
-   
+    const getComp = (selectionFigures) => {
+        if (Array.isArray(selectionFigures)) {
+            const ran = getRandomInclusive(0, selectionFigures.length - 1);
+            return selectionFigures[ran];
+        }
+        return;
+    };
 
     const game = () => {
-        
+        const selectionFigures = FIGURES_RUS;
         const result = {
             player: 0,
             computer: 0,
+            playerWin() {
+                this.player++;
+                alert('Игрок выйграл');
+            },
+            computerWin() {
+                this.computer++;
+                alert('Компьютер выйграл');
+            },
         };
+
         return function start() {
-            getRandomInclusive();
-            //const computer = FIGURES_RUS;
-            const player = prompt("Камень, ножницы, бумага?");
-            if (computer === 'камень' && player === 'ножницы') {
-                return 'Победа компьютера';
-            } else if (computer === 'бумага' && player === 'камень') {
-                return 'Победа игрока';
-            } else if (computer === 'ножницы' && player === 'бумага') {
-                return 'Победа компьютера';
-            } else if (player === 'камень' && computer === 'ножницы') {
-                return 'Победа компьютера';
-            } else if (player === 'бумага' && computer === 'камень') {
-                return 'Победа игрока';
-            } else if (player === 'ножницы' && computer === 'бумага') {
-                return 'Победа игрока';
+            const answerComp = getComp(selectionFigures).charAt(0).toLowerCase();
+            const answerPlayer = prompt("Камень, ножницы, бумага?");
+            if (answerPlayer === null || answerPlayer === '') {
+                console.log('Отмена');
+            
+                if (confirm('Закончить игру?')) {
+                    alert(`Компьютер ${result.computer} Игрок ${result.player}`,);
+                    return null;
+                } else {
+                    return start();
+                } 
             } else {
-                return 'Ничья';
+                answerPlayer = answerPlayer.charAt().toLowerCase();
+
+                if (answerPlayer === answerComp) {
+                    alert('Ничья');
+                    return start();
+                }
+
+                if (answerComp === 'к') {
+                    if (answerPlayer === 'н') {
+                        console.log('Компьютер выйграл');
+                        result.computerWin();
+                        return start();
+                    } else {
+                        console.log('Игрок выйграл');
+                        result.playerWin();
+                        return start();
+                    }
+                }
+                if (answerComp === 'н') {
+                    if (answerPlayer === 'б') {
+                        console.log('Компьютер выйграл');
+                        result.computerWin();
+                        return start();
+                    } else {
+                        console.log('Игрок выйграл');
+                        result.playerWin();
+                        return start();
+                    }
+                }
+                if (answerComp === 'б') {
+                    if (answerPlayer === 'к') {
+                        console.log('Компьютер выйграл');
+                        result.computerWin();
+                        return start();
+                    } else {
+                        console.log('Игрок выйграл');
+                        result.playerWin();
+                        return start();
+                    }
+                }
+                return start();
             }
         };
-    }
+
+    };
 
     window.RPS = game;
 })();
