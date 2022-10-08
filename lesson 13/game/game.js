@@ -34,7 +34,7 @@
 
         return function start() {
             const answerComp = getComp(selectionFigures).charAt(0).toLowerCase();
-            const answerPlayer = prompt("Камень, ножницы, бумага?");
+            let answerPlayer = prompt("Камень, ножницы, бумага?");
             if (answerPlayer === null || answerPlayer === '') {
                 console.log('Отмена');
             
