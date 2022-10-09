@@ -24,16 +24,17 @@
             computer: 0,
             playerWin() {
                 this.player++;
-                alert('Игрок выйграл');
+                alert('Игрок выиграл');
             },
             computerWin() {
                 this.computer++;
-                alert('Компьютер выйграл');
+                alert('Компьютер выиграл');
             },
         };
 
         return function start() {
             const answerComp = getComp(selectionFigures).charAt(0).toLowerCase();
+            console.log(answerComp);
             let answerPlayer = prompt("Камень, ножницы, бумага?");
             if (answerPlayer === null || answerPlayer === '') {
                 console.log('Отмена');
@@ -47,40 +48,46 @@
             } else {
                 answerPlayer = answerPlayer.charAt().toLowerCase();
 
+                if (answerPlayer !== 'к' && answerPlayer !== 'н' && answerPlayer !== 'б') {
+                    alert('Введите правильно!');
+                    return start();
+                }
+
                 if (answerPlayer === answerComp) {
                     alert('Ничья');
                     return start();
                 }
+                
 
                 if (answerComp === 'к') {
                     if (answerPlayer === 'н') {
-                        console.log('Компьютер выйграл');
+                        console.log('Компьютер выиграл');
                         result.computerWin();
                         return start();
                     } else {
-                        console.log('Игрок выйграл');
+                        console.log('Игрок выиграл');
                         result.playerWin();
                         return start();
                     }
                 }
                 if (answerComp === 'н') {
                     if (answerPlayer === 'б') {
-                        console.log('Компьютер выйграл');
+                        console.log('Компьютер выиграл');
                         result.computerWin();
                         return start();
                     } else {
-                        console.log('Игрок выйграл');
+                        console.log('Игрок выиграл');
                         result.playerWin();
                         return start();
                     }
                 }
                 if (answerComp === 'б') {
                     if (answerPlayer === 'к') {
-                        console.log('Компьютер выйграл');
+                        console.log('Компьютер выиграл');
                         result.computerWin();
                         return start();
                     } else {
-                        console.log('Игрок выйграл');
+                        console.log('Игрок выиграл');
                         result.playerWin();
                         return start();
                     }
