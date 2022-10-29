@@ -1,19 +1,32 @@
 'use strict';
-
+(() => {
+    const balls = [1, 2, 3, 4, 5];
     let player = 5;
     let bot = 5;
     let resPlayer;
     let resBot;
 
-    function randomInteger(min, max) {
-        let rand = min + Math.random() * (max + 1 - min);
-        return Math.floor(rand);
-    }
+    const randomInteger = (m, n) => {
+        const min = Math.floor(m < n ? m : n);
+        const max = Math.ceil(m > n ? m : n);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    
+
+    const getBotA = (ball) => {
+        if (Array.isArray(ball)) {
+            const ran = randomInteger(0, ball.length - 1);
+            return ball[ran];
+        }
+        return;
+    };
 
     const game = () => {
-        let result = {
-            player: 5,
-            bot: 5,
+        const ball = balls;
+
+        const result = {
+            player: 0,
+            bot: 0,
             playerWin() {
                 this.resPlayer++;
                 console.log('Игрок выиграл');
@@ -24,15 +37,16 @@
             },
         };
         
-    function start() {
+    const start = () => {
+        
         let getPlayer = prompt('Введи число от 1 до 5');
         getPlayer = Number(getPlayer);
         console.log(getPlayer);
 
-        let getBot = randomInteger(1, 5);
-        console.log(getBot);
+        const botAnswer = getBotA(ball);
+        console.log(botAnswer);
     
-        if (getPlayer % 2 === 0 && getBot % 2 === 0) {
+        if (getPlayer % 2 === 0 && botAnswer % 2 === 0) {
             resBot = bot + getPlayer;
             console.log('Bot:', resBot);
             resPlayer = player - getPlayer;
@@ -40,7 +54,7 @@
             result.botWin();
             return start();
 
-        } else if (getPlayer % 2 === 0 && getBot % 2 === 1) {
+        } else if (getPlayer % 2 === 0 && botAnswer % 2 === 1) {
             resPlayer = getPlayer + player;
             console.log('Player:', resPlayer);
             resBot = bot - getPlayer;
@@ -48,7 +62,7 @@
             result.playerWin();
             return start();
 
-        } else if (getPlayer % 2 === 1 && getBot % 2 === 1) {
+        } else if (getPlayer % 2 === 1 && botAnswer % 2 === 1) {
             resBot = bot + getPlayer;
             console.log('Bot:', resBot);
             resPlayer = player - getPlayer;
@@ -62,7 +76,10 @@
             result.botWin();
         }  
     }
-    start();
+    
+
+return start();
 };
 
-game();
+window.RPS = game();
+})();
